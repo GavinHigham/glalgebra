@@ -29,6 +29,9 @@ typedef struct affine_matrix4 {
 	};
 } amat4;
 
+#define MAT3_IDENT (mat3){{1, 0, 0,  0, 1, 0,  0, 0, 1}}
+#define AMAT4_IDENT {.a = MAT3_IDENT, .t = (vec3){{0.0, 0.0, 0.0}}}
+
 //Produces a new vector. Equivalent to (vec3){{{x, y, z}}}.
 vec3 vec3_new(float x, float y, float z);
 //Returns a new vector that represents the addition of respective components of a and b.
@@ -55,8 +58,6 @@ vec3 vec3_lerp(vec3 a, vec3 b, float alpha);
 float vec3_dot(vec3 a, vec3 b);
 //Return the magnitude of a.
 float vec3_mag(vec3 a);
-
-#define MAT3_IDENT (mat3){{1, 0, 0,  0, 1, 0,  0, 0, 1}}
 
 //Create a new mat3 from an array of floats. Row-major order.
 mat3 mat3_from_array(float *array);
@@ -89,7 +90,6 @@ mat3 mat3_lookat(vec3 p, vec3 q, vec3 u);
 //a becomes the rotation portion, and b becomes the translation.
 void mat3_vec3_to_array(mat3 a, vec3 b, float *buf);
 
-#define amat4_IDENT {.a = MAT3_IDENT, .t = (vec3){{0.0, 0.0, 0.0}}}
 //Multiply a by b and return the result as a new affine matrix.
 amat4 amat4_mult(amat4 a, amat4 b);
 //Multiply a by b and return the result as a new affine matrix.
@@ -119,7 +119,8 @@ amat4 amat4_rotmat_lomult(float ux, float uy, float uz, float s, float c);
 //Produce a lookat matrix that points from point p to point q, with u as "up".
 amat4 amat4_lookat(vec3 p, vec3 q, vec3 u);
 //Produce the inverse matrix to a, provided that a represents a rotation and a translation.
-//Does not work if a represents a scale (or a skew?).
+//This is not a true inverse, which in practice would be quite slow, and should be avoided.
+//Thus, this does not work if a represents a scale or skew.
 amat4 amat4_inverse(amat4 a);
 //Do a true 4x4 matrix multiply between a and b, and put the result into out.
 //a, b and out should represent 4x4 row-major matrices, as arrays of floats.
