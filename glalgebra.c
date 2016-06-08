@@ -2,7 +2,7 @@
 #include <math.h> //sqrt, sin, cos
 #include <string.h> //memcpy
 
-vec3 vec3_zero = (vec3){{0.0, 0.0, 0.0}};
+vec3 vec3_zero = {{0.0, 0.0, 0.0}};
 
 vec3 vec3_new(float x, float y, float z)
 {
