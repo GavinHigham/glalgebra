@@ -58,6 +58,8 @@ vec3 vec3_lerp(vec3 a, vec3 b, float alpha);
 float vec3_dot(vec3 a, vec3 b);
 //Return the magnitude of a.
 float vec3_mag(vec3 a);
+//Return the distance between a and b.
+float vec3_dist(vec3 a, vec3 b);
 
 //Create a new mat3 from an array of floats. Row-major order.
 mat3 mat3_from_array(float *array);

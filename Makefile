@@ -7,7 +7,7 @@ all: $(OBJECTS)
 install: all
 	ar -cvq libglalgebra.a $(OBJECTS)
 	mv libglalgebra.a /usr/local/lib/
-	mv glalgebra.h /usr/local/include/
+	cp glalgebra.h /usr/local/include/
 
 clean:
 	rm $(OBJECTS)

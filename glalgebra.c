@@ -55,6 +55,10 @@ float vec3_mag(vec3 a)
 {
 	return sqrt(a.x*a.x + a.y*a.y + a.z*a.z);
 }
+float vec3_dist(vec3 a, vec3 b)
+{
+	return vec3_mag(vec3_sub(a, b));
+}
 
 mat3 mat3_mult(mat3 a, mat3 b)
 {
