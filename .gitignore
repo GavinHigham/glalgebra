@@ -1,0 +1,4 @@
+*.s
+*.o
+*.DS_Store
+glalgebra_test

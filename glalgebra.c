@@ -43,7 +43,7 @@ vec3 vec3_cross(vec3 u, vec3 v)
 vec3 vec3_lerp(vec3 a, vec3 b, float alpha)
 {
 	float beta = 1 - alpha;
-	return (vec3){{a.x * alpha + b.x * beta, a.y * alpha + b.y * beta, a.z * alpha + b.z * beta, }};
+	return (vec3){{a.x * beta + b.x * alpha, a.y * beta + b.y * alpha, a.z * beta + b.z * alpha, }};
 }
 
 float vec3_dot(vec3 u, vec3 v)
