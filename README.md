@@ -1,21 +1,21 @@
-##GL Algebra##
+## GL Algebra
 
 
 GL Algebra is a small C11 static library that provides types and functions for a 3-vector, a 3x3-matrix, and a 4x4 affine matrix. It is written to be exceedingly clear in both implementation and usage.
 
-####vec3####
+#### vec3
 This type has some of the usual vector-3 functions, plus some union abuse to allow you to access its members creatively.
 
 Access as an array of 3 floats with .A
 
 Access as direct components with .x/.y/.z and .r/.g/.b
 
-####mat3####
+#### mat3
 This type has some of the usual 3 by 3 matrix functions, and it's pretty much just a struct wrapper around an array of 9 floats.
 
 Access as an array of 9 floats with .A
 
-####amat4####
+#### amat4
 This type has some of the usual 4 by 4 matrix functions, plus some union abuse to allow you to access its members creatively. It's pretty much just a struct wrapper around an array of 12 floats. The first 9 floats represent the inner top-left 3 by 3 matrix in row-major order, then the last 3 floats represent the first three components of the rightmost column, top-to-bottom. Since it is meant to represent an affine matrix, the last row is not explicitly stored, but is implied through all operations to be <0, 0, 0, 1>.
 
 Access the upper-left inner matrix3 with .a
@@ -28,7 +28,7 @@ Access the first three elements of the final column as a vector3 with .t
 
 Access the first three elements of the last column with .x/.y/.z
 
-###Example Usage###
+### Example Usage
 
 By defining the vector as a union of an array and an anonymous struct of sequential named floats, components can be accessed similar to GLSL:
 
@@ -49,7 +49,7 @@ For computer graphics, you can quickly and efficiently compose affine frames by 
 	}
 	eye_frame.a = mat3_lookat(eye_frame.t, eye_target, (vec3){{0, 1, 0}});
 	
-###Compiling and Installing###
+### Compiling and Installing
 The library is just one header file and one source file. You can simply copy it into your project if you like. Alternatively, you can use the provided Makefile to compile and install the library into your /usr/local/lib/ and /usr/local/include/ folders with this command:
 
 	make install
@@ -62,6 +62,6 @@ and compiling with the flags:
 
 	-L/usr/local/lib/ -lglalgebra
 	
-###Motivation###
+### Motivation
 
 I wrote this library in the course of making a 3D game engine in C (still a work in progress). I did not like the syntax used for other linear algebra libraries, so I made my own, making use of new C11 features. GL Algebra stands for "Gavin Linear Algebra" and ""Graphics Library Algebra".
